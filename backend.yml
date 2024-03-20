@@ -1,0 +1,64 @@
+- name: Backend setuo
+  hosts: all
+  become: yes
+  tasks:
+    - name: disable old nodejs version
+      ansible.builtin.shell: dnf module disable nodejs -y
+
+    - name: enable new nodejs version
+      ansible.builtin.shell: dnf module enable nodejs -y
+
+    - name: install nodejs
+      ansible.builtin.yum:
+        name: nodejs
+        state: latest
+
+    - name: add user application
+      ansible.builtin.user:
+        name: expense
+    - name: clean the old content
+      ansible.builtin.file:
+        path: /app
+        state: absent
+    - name: create app directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
+    - name: extract app content and zip file
+      ansible.builtin.unarchive:
+        src: https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip
+        dest: /app
+        remote_src: yes
+    - name: Download nodejs dependencies
+      community.general.npm:
+        path: /app
+        state: latest
+
+    - name: copy backendservice.conf
+      ansible.builtin.copy:
+        src: backendservice.conf
+        dest: /etc/systemd/system/backend.service
+    - name: install mysql
+      ansible.builtin.dnf:
+        name: amysql
+        state: installed
+    - name: load schema
+      community.mysql.mysql_db:
+        state: import
+        name: all
+        target: /app/schema/backend.sql
+        login_user: root
+        login_password: ExpenseApp@1
+        login_host: mysql-dev.ganeshreddy12.online
+
+    -  name: start backend service
+       ansible.builtin.systemd_service:
+         state: restarted
+         daemon_reload: true
+         name: backend
+         enabled: yes
+
+
+
+
+
