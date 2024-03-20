@@ -18,7 +18,7 @@
       ansible.builtin.file:
         path: /usr/share/nginx/html
         state: directory
-    - name: Unarchive a file that is already on the remote machine
+    - name: extract app content and zip file
       ansible.builtin.unarchive:
         src: https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
         dest: /usr/share/nginx/html
@@ -39,7 +39,3 @@
 
 
 
- #print_heading_task "extract app content"
-  #cd ${app_dir} &>>$log
-  #nzip /tmp/${component}.zip &>>$log
-  #check_status $?
