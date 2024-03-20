@@ -1,4 +1,4 @@
 - name: Frontend setup
   hosts: all
   tasks:
-    - name: Install Nginx
+     - name: Install Nginx
