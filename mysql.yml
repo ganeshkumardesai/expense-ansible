@@ -7,7 +7,7 @@
          name: mysql
          state: installed
 
-    - name : MYSQL server
+    - name: MYSQL server
       ansible.builtin.systemd_service:
         state: restarted
         name: mysqld
