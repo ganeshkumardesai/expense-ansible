@@ -1,4 +1,4 @@
-- name: Backend setuo
+- name: Backend setup
   hosts: all
   become: yes
   tasks:
