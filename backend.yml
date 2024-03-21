@@ -37,7 +37,7 @@
     - name: install mysql
       ansible.builtin.dnf:
         name: mysql
-        state: started
+        state: latest
     - name: load schema
       community.mysql.mysql_db:
         state: import
