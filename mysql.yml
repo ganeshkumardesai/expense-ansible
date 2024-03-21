@@ -11,7 +11,6 @@
          name: mysql
          state: started
          enabled: yes
-         login_password: ExpenseApp@1
     - name: setup root password
       ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
 
