@@ -3,7 +3,7 @@
     name: nginx
     state: latest
 - name: copy expenseservice.conf
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: expenseservice.conf
     dest: /etc/nginx/default.d/expense.conf
 - name: import app-prereq

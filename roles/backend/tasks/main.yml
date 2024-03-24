@@ -18,7 +18,7 @@
     path: /app
     state: latest
 - name: copy backendservice.conf
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: backendservice.conf
     dest: /etc/systemd/system/backend.service
 - name: install python mysql client
