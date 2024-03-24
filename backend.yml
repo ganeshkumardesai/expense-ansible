@@ -1,8 +1,8 @@
-- name: Backend setup
+- name: expenseproject
   hosts: all
   become: yes
   roles:
-    - backend
+    - "{{ role_name }}"
 
 
 
