@@ -18,6 +18,7 @@
   community.mysql.mysql_info:
     login_user: root
     login_password: ExpenseApp@1
+    login_host: mysql-dev.ganeshreddy12.online
     filter: version
   register: mysql_connection_output
 - name: print
