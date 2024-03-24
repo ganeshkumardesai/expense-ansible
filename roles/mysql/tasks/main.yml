@@ -8,6 +8,17 @@
     state: restarted
     name: mysqld
     enabled: yes
-
+- name: install python mysql client
+  ansible.builtin.pip:
+    name:
+      - pymysql
+      - cryptography
+    executable: pip3.9
+- name: check the database with our password
+  community.mysql.mysql_info:
+    login_user: root
+    login_password: ExpenseApp@1
+    filter: version
+  register: mysql_connection_output
 - name: setup MySQL password
   ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
