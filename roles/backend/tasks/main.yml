@@ -9,12 +9,10 @@
 - name: add user application
   ansible.builtin.user:
     name: expense
-
 - name: import app-prereq
   ansible.builtin.import_role:
     name: common
     tasks_from: app-prereq
-
 - name: Download nodejs dependencies
   community.general.npm:
     path: /app
