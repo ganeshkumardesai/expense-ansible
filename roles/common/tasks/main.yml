@@ -1,2 +1,2 @@
-- name: assign set-prompt to the backend
+- name: assign set-prompt to the role_name
   ansible.builtin.shell: set-prompt {{ component }}-{{ env }}
