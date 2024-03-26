@@ -29,3 +29,55 @@ pipelines:
                       - frontend
                     command: bash
                     run_if: passed
+      - QA:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            ansible-playbook:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - frontend
+                    command: bash
+                    run_if: passed
+
+      - stage:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            ansible-playbook:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - frontend
+                    command: bash
+                    run_if: passed
+      - prod:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            ansible-playbook:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - frontend
+                    command: bash
+                    run_if: passed
